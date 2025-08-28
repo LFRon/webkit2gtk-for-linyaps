@@ -1,2 +1,4 @@
 # webkit2gtk-for-linyaps
 给玲珑打包专用爆改过的webkit2gtk源代码
+
+其中修复了玲珑容器内因Runtime挂载在/runtime而引发Webkit2GTK通过硬链接寻找二进制文件路径错误的问题
