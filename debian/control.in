@@ -1,0 +1,127 @@
+Source: webkit2gtk
+Priority: optional
+Section: web
+Maintainer: Debian WebKit Maintainers <pkg-webkit-maintainers@lists.alioth.debian.org>
+Uploaders: Gustavo Noronha Silva <kov@debian.org>,
+           Emilio Pozuelo Monfort <pochu@debian.org>,
+           Alberto Garcia <berto@igalia.com>
+X-Ubuntu-Use-Langpack: no
+Build-Depends: debhelper-compat (= 13),
+               bubblewrap [amd64 arm64 armel armhf i386 mips64el ppc64el riscv64 s390x hppa ppc64 x32],
+               xdg-dbus-proxy [amd64 arm64 armel armhf i386 mips64el ppc64el riscv64 s390x hppa ppc64 x32],
+               libseccomp-dev [amd64 arm64 armel armhf i386 mips64el ppc64el riscv64 s390x hppa ppc64 x32],
+               clang [amd64 arm64 armel armhf ppc64el riscv64 s390x],
+               cmake (>= 3.20),
+               flite1-dev,
+               libglib2.0-dev,
+               libharfbuzz-dev,
+               libcairo2-dev,
+               libdrm-dev,
+               libfontconfig-dev,
+               libfreetype-dev,
+               libicu-dev,
+               libgcrypt20-dev,
+               libhyphen-dev,
+               libjxl-dev,
+               liblcms2-dev,
+               libmanette-0.2-dev,
+               libsysprof-capture-4-dev (>= 3.38.0) [amd64 arm64 armel armhf i386 mips64el ppc64el riscv64 s390x hppa loong64 powerpc ppc64 sh4],
+               libxslt1-dev,
+               libxml2-dev,
+               @EXTRA_BUILD_DEPS@
+               libsqlite3-dev,
+               libsystemd-dev,
+               libgudev-1.0-dev,
+               libwoff-dev,
+               gperf,
+               bison,
+               flex,
+               ruby:native,
+               unifdef,
+               libavif-dev,
+               libjpeg-dev,
+               libopenjp2-7-dev,
+               libpng-dev,
+               libtasn1-6-dev,
+               libwebp-dev,
+               libxt-dev,
+               libgstreamer1.0-dev,
+               libgstreamer-plugins-base1.0-dev,
+               libgstreamer-plugins-bad1.0-dev,
+               libenchant-2-dev,
+               libsecret-1-dev,
+               gobject-introspection,
+               libgirepository1.0-dev,
+               ninja-build,
+               libegl-dev,
+               libgl-dev,
+               libgles-dev
+Build-Depends-Indep: gi-docgen, jdupes
+Standards-Version: 4.7.0
+Rules-Requires-Root: no
+Vcs-Browser: https://salsa.debian.org/webkit-team/webkit
+Vcs-Git: https://salsa.debian.org/webkit-team/webkit.git
+Homepage: https://webkitgtk.org/
+
+Package: @LIBJSCBIN_PKG@
+Section: interpreters
+Architecture: linux-any
+Pre-Depends: ${misc:Pre-Depends}
+Depends: @LIBJSCBIN_DEP_PKG@ (= ${binary:Version}),
+         ${shlibs:Depends},
+         ${misc:Depends}
+Conflicts: ${jscbin:Conflicts}
+Breaks: ${jscbin:Replaces}
+Replaces: ${jscbin:Replaces}
+Description: JavaScript engine library from WebKitGTK - command-line interpreter
+ JavaScriptCore is the JavaScript engine used in WebKit. It consists
+ of the following building blocks: lexer, parser, start-up interpreter
+ (LLInt), baseline JIT, a low-latency optimizing JIT (DFG), and a
+ high-throughput optimizing JIT (FTL).
+ .
+ This package provides jsc, a command-line JavaScript interpreter.
+
+Package: @LIBWEBKITGTKDOC_PKG@
+Build-Profiles: <!nodoc>
+Section: doc
+Architecture: all
+Multi-Arch: foreign
+Depends: ${misc:Depends}
+Conflicts: ${wkdoc:Conflicts}
+Breaks: ${wkdoc:Replaces}
+Replaces: ${wkdoc:Replaces}
+Suggests: devhelp
+Description: Web content engine library for GTK - documentation
+ WebKit is a web content engine, derived from KHTML and KJS from KDE, and
+ used primarily in Apple's Safari browser.  It is made to be embedded in
+ other applications, such as mail readers, or web browsers.
+ .
+ It is able to display content such as HTML, SVG, XML, and others. It also
+ supports DOM, XMLHttpRequest, XSLT, CSS, JavaScript/ECMAScript and more.
+ .
+ WebKitGTK is a WebKit port designed to be used in GTK applications.
+ .
+ This package contains the documentation.
+
+Package: @WEBDRIVER_PKG@
+Architecture: linux-any
+Pre-Depends: ${misc:Pre-Depends}
+Depends: @WEBDRIVER_DEP_PKG@ (= ${binary:Version}),
+         ${shlibs:Depends},
+         ${misc:Depends}
+Conflicts: ${wkwebdriver:Conflicts}
+Breaks: ${wkwebdriver:Replaces}
+Replaces: ${wkwebdriver:Replaces}
+Description: WebKitGTK WebDriver support
+ WebKit is a web content engine, derived from KHTML and KJS from KDE, and
+ used primarily in Apple's Safari browser.  It is made to be embedded in
+ other applications, such as mail readers, or web browsers.
+ .
+ It is able to display content such as HTML, SVG, XML, and others. It also
+ supports DOM, XMLHttpRequest, XSLT, CSS, JavaScript/ECMAScript and more.
+ .
+ WebKitGTK is a WebKit port designed to be used in GTK applications.
+ .
+ This package provides the WebDriver service implementation for
+ WebKitGTK.
+
